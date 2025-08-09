@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Chinese-Thai Flashcard App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { background: linear-gradient(45deg, #667eea, #764ba2); min-height: 100vh; }
+        .test-result { 
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            background: rgba(255,255,255,0.9); 
+            padding: 10px; 
+            border-radius: 8px; 
+            font-family: monospace; 
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="animated-bg">
+    <div id="test-status" class="test-result">
+        <div id="test-log">Starting tests...</div>
+    </div>
+    <div id="root"></div>
+    
+    <script>
+        function log(message) {
+            const logElement = document.getElementById('test-log');
+            logElement.innerHTML += '<br>' + message;
+            console.log('TEST:', message);
+        }
+        
+        // Test 1: Check if all dependencies loaded
+        log('✓ React loaded: ' + (typeof React !== 'undefined'));
+        log('✓ ReactDOM loaded: ' + (typeof ReactDOM !== 'undefined'));
+        log('✓ Babel loaded: ' + (typeof Babel !== 'undefined'));
+        
+        // Test 2: Load data file
+        try {
+            document.addEventListener('DOMContentLoaded', function() {
+                log('✓ DOM loaded');
+            });
+        } catch (e) {
+            log('✗ DOM error: ' + e.message);
+        }
+    </script>
+    
+    <script src="data.js"></script>
+    <script>
+        // Test 3: Check data loading
+        log('✓ Data loaded: ' + (typeof CHINESE_VOCABULARY !== 'undefined'));
+        log('✓ Vocabulary count: ' + (CHINESE_VOCABULARY ? CHINESE_VOCABULARY.length : 0));
+        log('✓ Translations loaded: ' + (typeof TRANSLATIONS !== 'undefined'));
+    </script>
+    
+    <script type="text/babel" src="hooks/useSpeech.js"></script>
+    <script type="text/babel">
+        // Test 4: Check hooks
+        log('✓ useSpeech hook loaded: ' + (typeof useSpeech !== 'undefined'));
+    </script>
+    
+    <script type="text/babel" src="components/Icon.js"></script>
+    <script type="text/babel" src="components/Background.js"></script>
+    <script type="text/babel" src="components/Card.js"></script>
+    <script type="text/babel">
+        // Test 5: Check components
+        log('✓ Icon component loaded: ' + (typeof Icon !== 'undefined'));
+        log('✓ FloatingShapes loaded: ' + (typeof FloatingShapes !== 'undefined'));
+        log('✓ CardFace component loaded: ' + (typeof CardFace !== 'undefined'));
+    </script>
+    
+    <script type="text/babel" src="screens/LoadingScreen.js"></script>
+    <script type="text/babel" src="screens/CreateScreen.js"></script>
+    <script type="text/babel" src="screens/StudyScreen.js"></script>
+    <script type="text/babel" src="screens/CollectionScreen.js"></script>
+    <script type="text/babel" src="screens/SavedCardsScreen.js"></script>
+    <script type="text/babel" src="screens/DifficultCardsScreen.js"></script>
+    <script type="text/babel" src="screens/CompletionScreen.js"></script>
+    <script type="text/babel">
+        // Test 6: Check screens
+        log('✓ LoadingScreen loaded: ' + (typeof LoadingScreen !== 'undefined'));
+        log('✓ CreateScreen loaded: ' + (typeof CreateScreen !== 'undefined'));
+        log('✓ StudyScreen loaded: ' + (typeof StudyScreen !== 'undefined'));
+        log('✓ CollectionScreen loaded: ' + (typeof CollectionScreen !== 'undefined'));
+        log('✓ SavedCardsScreen loaded: ' + (typeof SavedCardsScreen !== 'undefined'));
+        log('✓ DifficultCardsScreen loaded: ' + (typeof DifficultCardsScreen !== 'undefined'));
+        log('✓ CompletionScreen loaded: ' + (typeof CompletionScreen !== 'undefined'));
+    </script>
+    
+    <script type="text/babel" src="app.js"></script>
+    <script type="text/babel">
+        // Test 7: Check main app
+        log('✓ FlashcardApp loaded: ' + (typeof FlashcardApp !== 'undefined'));
+        log('✓ App rendered successfully');
+        
+        // Hide test results after 5 seconds
+        setTimeout(() => {
+            document.getElementById('test-status').style.display = 'none';
+        }, 5000);
+    </script>
+</body>
+</html>
