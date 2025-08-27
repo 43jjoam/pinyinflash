@@ -12,11 +12,11 @@ const CardFront = ({ char, pinyin, onPronounce }) => (
 const CardBack = ({ english, thai, emoji, onPronounce }) => {
     // Auto-play English when the back face mounts
     useEffect(() => {
-        onPronounce(english, { forceLang: 'en-US', rate: 0.9 });
+        onPronounce(english, { forceLang: 'en-US', rate: 0.9, preferredVoiceNames: ['Google US English'] });
     }, [english, onPronounce]);
 
     return (
-        <div className="card-face card-back" onClick={() => onPronounce(english, { forceLang: 'en-US' })}>
+        <div className="card-face card-back" onClick={() => onPronounce(english, { forceLang: 'en-US', preferredVoiceNames: ['Google US English'] })}>
             <div className="card-content">
                 <div className="translation-content">
                     {emoji && <div className="emoji-display">{emoji}</div>}

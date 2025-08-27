@@ -47,7 +47,13 @@ const useSpeech = () => {
                 voice = voices.find(v => v.lang.includes('th-TH')) || voices.find(v => v.lang.startsWith('th'));
                 utterance.rate = 0.7;
             } else {
-                voice = voices.find(v => v.lang.includes('en-US')) || voices.find(v => v.lang.startsWith('en'));
+                // Prefer Google US English if available, otherwise sensible fallbacks
+                const preferredNames = options.preferredVoiceNames || ['Google US English'];
+                voice = preferredNames
+                    .map(name => voices.find(v => v.name === name || v.name.includes(name)))
+                    .find(Boolean)
+                    || voices.find(v => v.lang.includes('en-US'))
+                    || voices.find(v => v.lang.startsWith('en'));
                 utterance.rate = 0.8;
             }
             
