@@ -9,17 +9,24 @@ const CardFront = ({ char, pinyin, onPronounce }) => (
     </div>
 );
 
-const CardBack = ({ english, thai, emoji, onPronounce }) => (
-    <div className="card-face card-back" onClick={() => onPronounce(english)}>
-        <div className="card-content">
-            <div className="translation-content">
-                {emoji && <div className="emoji-display">{emoji}</div>}
-                <div className="english-translation">{english}</div>
-                <div className="thai-translation">{thai}</div>
+const CardBack = ({ english, thai, emoji, onPronounce }) => {
+    // Auto-play English when the back face mounts
+    useEffect(() => {
+        onPronounce(english, { forceLang: 'en-US', rate: 0.9 });
+    }, [english, onPronounce]);
+
+    return (
+        <div className="card-face card-back" onClick={() => onPronounce(english, { forceLang: 'en-US' })}>
+            <div className="card-content">
+                <div className="translation-content">
+                    {emoji && <div className="emoji-display">{emoji}</div>}
+                    <div className="english-translation">{english}</div>
+                    <div className="thai-translation">{thai}</div>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 const CardFace = ({ content, type, emoji }) => {
     const pronounceText = useSpeech();

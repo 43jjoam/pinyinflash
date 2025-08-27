@@ -26,7 +26,7 @@ const useSpeech = () => {
         return 'en-US';
     };
 
-    const pronounceText = useCallback((text) => {
+    const pronounceText = useCallback((text, options = {}) => {
         if (!text || !text.trim() || !window.speechSynthesis || voices.length === 0) return;
 
         window.speechSynthesis.cancel();
@@ -34,7 +34,7 @@ const useSpeech = () => {
         setTimeout(() => {
             const textToPronounce = text.split('\n')[0].trim();
             const utterance = new SpeechSynthesisUtterance(textToPronounce);
-            const lang = detectLanguage(textToPronounce);
+            const lang = options.forceLang || detectLanguage(textToPronounce);
 
             utterance.lang = lang;
             let voice;
@@ -52,6 +52,8 @@ const useSpeech = () => {
             }
             
             utterance.voice = voice || null;
+            if (options.rate) utterance.rate = options.rate;
+            if (options.pitch) utterance.pitch = options.pitch;
             
             utterance.onerror = (e) => console.error('Speech synthesis error:', e.error);
             
