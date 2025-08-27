@@ -65,7 +65,7 @@ const CreateScreen = ({ onTopicSubmit }) => {
              <FloatingShapes/>
             <div className="w-full max-w-md mx-auto text-center px-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">{t('flashcardsCode')}</h1>
-                <p className="text-white/80 mb-8">Enter "LearnChinesewithHelen11295" or "pinyin" to start.</p>
+                <p className="text-white/80 mb-8">Enter a code to start.</p>
                 
                 <div className="relative">
                     <input

@@ -139,5 +139,36 @@ const PINYIN_CARDS = [
     { front: "ao", back: "ao\nFinal compound: 'aow' sound\nเสียงสระผสม: 'เอา'", emoji: "🗣️" }
 ];
 
+// New deck: the-best-child
+const THE_BEST_CHILD_CARDS = [
+    { front: "难过\nnán guò", back: "sad\nเศร้า", emoji: "😢" },
+    { front: "开心\nkāi xīn", back: "happy\nมีความสุข", emoji: "😊" },
+    { front: "生气\nshēng qì", back: "angry\nโกรธ", emoji: "😠" },
+    { front: "震惊\nzhèn jīng", back: "shocked\nตกใจ", emoji: "😱" },
+    { front: "内疚\nnèi jiù", back: "guilty\nรู้สึกผิด", emoji: "😔" },
+    { front: "爸爸\nbà ba", back: "dad\nพ่อ", emoji: "👨" },
+    { front: "儿子\nér zi", back: "son\nลูกชาย", emoji: "👦" },
+    { front: "同学\ntóng xué", back: "classmate\nเพื่อนร่วมชั้น", emoji: "👥" },
+    { front: "拥抱\nyōng bào", back: "to hug\nกอด", emoji: "🤗" },
+    { front: "分享\nfēn xiǎng", back: "to share\nแบ่งปัน", emoji: "🤝" },
+    { front: "画画\nhuà huà", back: "to draw\nวาดรูป", emoji: "🎨" },
+    { front: "跳舞\ntiào wǔ", back: "to dance\nเต้นรำ", emoji: "💃" },
+    { front: "数学\nshù xué", back: "math\nคณิตศาสตร์", emoji: "🔢" },
+    { front: "教室\njiào shì", back: "classroom\nห้องเรียน", emoji: "🏫" },
+    { front: "卧室\nwò shì", back: "bedroom\nห้องนอน", emoji: "🛏️" },
+    { front: "玩具\nwán jù", back: "toy\nของเล่น", emoji: "🧸" },
+    { front: "鼓\ngǔ", back: "drum\nกลอง", emoji: "🥁" },
+    { front: "最好的\nzuì hǎo de", back: "the best\nที่ดีที่สุด", emoji: "⭐" },
+    { front: "特别\ntè bié", back: "special\nพิเศษ", emoji: "✨" },
+    { front: "最可爱的\nzuì kě ài de", back: "the cutest\nน่ารักที่สุด", emoji: "🥰" },
+    { front: "够了\ngòu le", back: "enough\nพอแล้ว", emoji: "🛑" },
+    { front: "如果\nrú guǒ", back: "if\nถ้า", emoji: "❓" },
+    { front: "未来\nwèi lái", back: "future\nอนาคต", emoji: "🔮" },
+    { front: "艺术家\nyì shù jiā", back: "artist\nศิลปิน", emoji: "👨‍🎨" },
+    { front: "舞蹈家\nwǔ dǎo jiā", back: "dancer\nนักเต้น", emoji: "💃" },
+    { front: "科学家\nkē xué jiā", back: "scientist\nนักวิทยาศาสตร์", emoji: "👨‍🔬" },
+    { front: "老师\nlǎo shī", back: "teacher\nครู", emoji: "👨‍🏫" }
+];
+
 // Helper function for translations
 const t = (key) => TRANSLATIONS['en-US']?.[key] || key;

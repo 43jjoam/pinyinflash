@@ -17,10 +17,10 @@ const FlashcardApp = () => {
         setMode('loading');
         setTimeout(() => {
             let cards;
-            if (code === 'LearnChinesewithHelen11295') {
-                cards = CHINESE_VOCABULARY;
-            } else if (['pinyin', 'py', '拼音'].includes(code)) {
+            if (['Pinyin1', 'pinyin', 'py', '拼音'].includes(code)) {
                 cards = PINYIN_CARDS;
+            } else if (code === 'the-best-child') {
+                cards = THE_BEST_CHILD_CARDS;
             } else {
                 cards = [{ front: "Invalid Code", back: "Please try another code.", emoji: "🤷" }];
             }
