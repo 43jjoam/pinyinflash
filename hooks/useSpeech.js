@@ -47,13 +47,27 @@ const useSpeech = () => {
                 voice = voices.find(v => v.lang.includes('th-TH')) || voices.find(v => v.lang.startsWith('th'));
                 utterance.rate = 0.7;
             } else {
-                // Prefer Google US English if available, otherwise sensible fallbacks
+                // Prefer Google US English or an English female voice
                 const preferredNames = options.preferredVoiceNames || ['Google US English'];
+                const englishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+
+                // 1) Exact/contains name matches
                 voice = preferredNames
-                    .map(name => voices.find(v => v.name === name || v.name.includes(name)))
-                    .find(Boolean)
-                    || voices.find(v => v.lang.includes('en-US'))
-                    || voices.find(v => v.lang.startsWith('en'));
+                    .map(name => englishVoices.find(v => v.name === name || v.name.includes(name)))
+                    .find(Boolean);
+
+                // 2) Gender preference by heuristic (no gender field in API)
+                if (!voice && (options.preferredGender || 'female') === 'female') {
+                    const femaleNameHints = [
+                        'female','Samantha','Victoria','Karen','Tessa','Serena','Allison','Ava','Susan','Zira','Jenny','Aria','Joanna','Ivy','Kendra','Kimberly','Salli','Nicole','Olivia','Emma','Natasha','Amy','Linda','Catherine','Alice','Sarah','Heather','Mira','Siri'
+                    ];
+                    voice = englishVoices.find(v => femaleNameHints.some(h => v.name.toLowerCase().includes(h.toLowerCase())));
+                }
+
+                // 3) Locale fallback
+                if (!voice) voice = englishVoices.find(v => v.lang.includes('en-US'));
+                if (!voice) voice = englishVoices[0];
+
                 utterance.rate = 0.8;
             }
             
@@ -62,6 +76,9 @@ const useSpeech = () => {
             if (options.pitch) utterance.pitch = options.pitch;
             
             utterance.onerror = (e) => console.error('Speech synthesis error:', e.error);
+            if (voice) {
+                try { console.log('[TTS] Using voice:', voice.name, voice.lang); } catch (e) { /* no-op */ }
+            }
             
             window.speechSynthesis.speak(utterance);
         }, 100); // Small delay for cancel to work reliably
