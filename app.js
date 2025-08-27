@@ -19,6 +19,8 @@ const FlashcardApp = () => {
             let cards;
             if (['Pinyin1', 'pinyin', 'py', '拼音'].includes(code)) {
                 cards = PINYIN_CARDS;
+            } else if (code === 'chinese-pinyin') {
+                cards = CHINESE_VOCABULARY;
             } else if (code === 'the-best-child') {
                 cards = THE_BEST_CHILD_CARDS;
             } else {
