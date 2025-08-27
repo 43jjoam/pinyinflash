@@ -104,6 +104,11 @@ const StudyScreen = ({ flashcards, onShowCollection, onShowSavedCards, onShowDif
             if (e.key === 'ArrowRight') handleSwipeRight();
             if (e.key === 'ArrowLeft') handleSwipeLeft();
             if (e.key === 'ArrowUp' || e.key === 'ArrowDown') handleFlip();
+            // Space bar to flip (desktop/laptop)
+            if (e.code === 'Space' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                handleFlip();
+            }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
