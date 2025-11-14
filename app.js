@@ -23,7 +23,15 @@ const FlashcardApp = () => {
                 cards = CHINESE_VOCABULARY;
             } else if (code === 'the-best-child') {
                 cards = THE_BEST_CHILD_CARDS;
-            } else {
+            } else if (code === 'activity-cards') {
+                cards = DAILY_ACTIVITIES_CARDS;
+            } else if (code === 'opposites') {
+                cards = OPPOSITES_CARDS;
+            } else if (code === 'careers') {
+                cards = CAREERS_CARDS;
+            } else if (code === 'verbs-trilingual') {
+                cards = VERBS_CARDS;
+            }else {
                 cards = [{ front: "Invalid Code", back: "Please try another code.", emoji: "🤷" }];
             }
             setFlashcards(cards);
